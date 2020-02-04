@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   .sidebar-container {
-    /* width: 30rem; */
-
     padding: 0 4rem;
     height: 100vh;
     position: fixed;
-    padding-top: 2.8rem;
+    padding-top: 68px;
     left: 0px;
+    top: 0px;
     box-shadow: 0px 4px 10px rgba(79, 79, 79, 0.07);
     transition: left, cubic-bezier(0.4, 0.01, 0.165, 0.99) 1s;
     -webkit-transition: left, cubic-bezier(0.4, 0.01, 0.165, 0.99) 1s;
@@ -31,13 +30,14 @@ export const Container = styled.div`
   }
 
   .mobile-sidebar {
-    display: flex;
-    justify-content: flex-end;
     .burger {
       z-index: 300;
+      position: fixed;
+      left: 0;
     }
     @media (min-width: 1024px) {
       display: none;
+      background: white;
     }
   }
 

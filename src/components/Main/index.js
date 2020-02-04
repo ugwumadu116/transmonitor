@@ -1,10 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Pagination from "react-js-pagination";
+
 import { Container } from "./elements";
 import Chart from "../Chart";
-
 import Box from "../Box";
 
+import SimpleSelect from "../Select";
+import Table from "../Table";
+
 const Main = () => {
+  const [datas, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [dataPerPage, setDataPerPage] = useState(9);
+  const [numPage, setNumPage] = useState(dataPerPage);
+  const [dataType, setDataType] = useState("All");
+  const [newData, setnewData] = useState([]);
+
+  const selectedPageNumber = num => {
+    if (typeof num.value == "number") {
+      setNumPage(num.value);
+    } else {
+      setDataType(num.value);
+    }
+  };
+  useEffect(() => {
+    setDataPerPage(numPage);
+  }, [numPage]);
+
+  const paginate = pn => {
+    setCurrentPage(pn);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("data/table_data.json")
+      .then(res => res.json())
+      .then(data => setData(data));
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    let newData = datas.filter(x => {
+      if (dataType === "" || dataType === "All") {
+        return x;
+      } else {
+        return x.status === dataType;
+      }
+    });
+    setnewData(newData);
+  }, [datas, dataType]);
+
+  const indexOfLastData = currentPage * dataPerPage;
+  const indexOfFirstData = indexOfLastData - dataPerPage;
+  const currentPost = newData.slice(indexOfFirstData, indexOfLastData);
+
   return (
     <Container>
       <div className="main-container">
@@ -71,6 +121,71 @@ const Main = () => {
           </div>
         </div>
 
+        <div className="main-graph-section">
+          <div className="heading">Payments</div>
+          <div className="payment-table-options">
+            <div className="payment-display-number">
+              <span>Showing</span>
+              <SimpleSelect
+                datas={[9, 15, 20, 25]}
+                selected={selectedPageNumber}
+                size="small"
+              />
+              <span>Out of {newData.length} payments</span>
+            </div>
+            <div className="searchbar-table">
+              <span>
+                <img src="assets/Search.svg" alt="" />
+              </span>
+              <input
+                type="text"
+                className="search"
+                name="search"
+                placeholder="Search payments"
+              />
+            </div>
+
+            <div className="show-data-type">
+              <span>Show</span>
+              <SimpleSelect
+                selected={selectedPageNumber}
+                size="big"
+                datas={[
+                  "All",
+                  "Reconciled",
+                  "Un-Reconciled",
+                  "Settled",
+                  "Unsettled"
+                ]}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="table-main-content">
+          <Table datas={currentPost} loading={loading} />
+        </div>
+
+        <div className="table-footer-section">
+          <div className="showing">
+            Showing {indexOfFirstData + 1} to {dataPerPage + indexOfFirstData}{" "}
+            of {newData.length} entries
+          </div>
+          <div className="pagination">
+            <Pagination
+              hideFirstLastPages
+              pageRangeDisplayed={2}
+              activePage={currentPage}
+              itemsCountPerPage={dataPerPage}
+              totalItemsCount={newData.length}
+              onChange={paginate}
+              prevPageText="Previous"
+              nextPageText="Next"
+              itemClass="page-item"
+              linkClass="page-link"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   );
