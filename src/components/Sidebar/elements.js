@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   .sidebar-container {
-    width: 30rem;
+    /* width: 30rem; */
     padding: 0 4rem;
     height: 100vh;
     position: fixed;
