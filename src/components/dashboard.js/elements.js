@@ -10,12 +10,15 @@ export const Container = styled.div`
   }
 
   .col-lg-10 {
-    padding: 0 0;
+    padding: 55px 0 0 50px;
   }
-  .col-lg-2,
-  .col-lg-10 {
-    @media (min-width: 1024px) {
+  .col-lg-2 {
+    padding: 55px 0 0 50px;
+  }
+  @media (max-width: 1024px) {
+    .col-lg-10 {
       padding: 0 !important;
     }
   }
+
 `;

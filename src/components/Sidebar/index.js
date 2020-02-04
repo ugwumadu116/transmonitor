@@ -23,7 +23,6 @@ const Sidebar = () => {
 
   return (
     <Container toggle={toggle}>
-      <div className="sidebar">
         <div className="sidebar-container">
           <div className="containerr">
             <div className="desktop-sidebar-contents">
@@ -62,7 +61,6 @@ const Sidebar = () => {
           </div>
          
         </div>
-      </div>
     </Container>
   );
 };
