@@ -40,7 +40,7 @@ export const Container = styled.div`
   }
 
   .main-chart-section {
-    margin-top: 2.7rem;
+    margin-top: 100px;;
     height: 32.9rem;
     display: flex;
     justify-content: space-between;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   .sidebar-container {
     /* width: 30rem; */
+
     padding: 0 4rem;
     height: 100vh;
     position: fixed;
@@ -14,6 +15,8 @@ export const Container = styled.div`
     -moz-transition: left, cubic-bezier(0.4, 0.01, 0.165, 0.99) 1s;
     -ms-transition: left, cubic-bezier(0.4, 0.01, 0.165, 0.99) 1s;
     -o-transition: left, cubic-bezier(0.4, 0.01, 0.165, 0.99) 1s;
+    z-index: 1;
+    background: white;
   }
 
   .sidebar-container {
@@ -28,6 +31,11 @@ export const Container = styled.div`
   }
 
   .mobile-sidebar {
+    display: flex;
+    justify-content: flex-end;
+    .burger {
+      z-index: 300;
+    }
     @media (min-width: 1024px) {
       display: none;
     }
