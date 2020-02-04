@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
- 
   .navbar-container {
     height: 6rem;
     box-shadow: 0px 4px 10px rgba(79, 79, 79, 0.07);
@@ -136,8 +135,6 @@ export const Container = styled.div`
     border-radius: 90%;
   }
 
-
-
   .burger-menu {
     position: relative;
     z-index: 10;
@@ -185,6 +182,9 @@ export const Container = styled.div`
       left: 1rem;
     }
   }
+  li {
+    cursor: pointer;
+  }
 
   .box {
     position: fixed;
@@ -227,28 +227,28 @@ export const Container = styled.div`
 `;
 
 export const MobileNav = styled.div`
-         .m-Logo {
-           display: flex;
-           .burger-menu {
-             margin-left: auto;
-           }
-         }
+  .m-Logo {
+    display: flex;
+    .burger-menu {
+      margin-left: auto;
+    }
+  }
 
-         background-color: #0c3f3f;
-         height: 100vh;
+  background-color: #0c3f3f;
+  height: 100vh;
 
-         & .linkContainer {
-           color: #ffffff;
-           font-weight: 700;
-           display: flex;
-           width: 100%;
-           height: 100%;
+  & .linkContainer {
+    color: #ffffff;
+    font-weight: 700;
+    display: flex;
+    width: 100%;
+    height: 100%;
 
-           margin-top: 20px;
-           flex-direction: column;
-           align-items: center;
-           z-index: 9999;
-           opacity: 0.99;
-           justify-content: space-evenly;
-         }
-       `;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0.99;
+    justify-content: space-evenly;
+  }
+`;
